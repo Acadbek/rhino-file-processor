@@ -5,7 +5,7 @@ export const mockProducts = [
     id: 1,
     name: "GR Closet",
     description: "Perfect corner solution with rotating carousel shelves.",
-    image: "https://via.placeholder.com/300x300?text=Closet+1", // Vaqtincha rasm
+    image: "https://via.placeholder.com/300x300?text=Closet+1", // 
     category: "Storage"
   },
   {

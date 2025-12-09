@@ -4,13 +4,13 @@ import Viewer3D from '../components/Viewer3D.js';
 
 let rhino = null;
 let viewer = null;
-let rawData = []; // Asl ma'lumotlar shu yerda turadi
+let rawData = [];
 
 // State (Holat)
 let state = {
-    unit: 'mm', // mm yoki cm
+    unit: 'mm',
     search: '',
-    sortBy: 'material' // material, length, qty
+    sortBy: 'material'
 };
 
 async function initRhino() {
@@ -110,7 +110,6 @@ export default {
 
     afterRender: async () => {
         initRhino();
-        // Elementlarni olish
         const elements = {
             dropZone: document.getElementById('dropZone'),
             fileInput: document.getElementById('fileInput'),
@@ -128,8 +127,6 @@ export default {
                 area: document.getElementById('statArea')
             }
         };
-
-        // --- EVENT LISTENERS ---
 
         // 1. Search
         elements.searchInput.addEventListener('input', (e) => {
@@ -183,8 +180,6 @@ export default {
             downloadCSV();
         });
 
-
-        // --- ASOSIY FUNKSIYALAR ---
 
         async function processFile(file) {
             elements.content.style.display = 'none';
@@ -339,13 +334,11 @@ export default {
         }
 
         function downloadCSV() {
-            // Excel uchun har doim MM da chiqargan ma'qul, yoki current state bo'yicha
             const factor = state.unit === 'cm' ? 0.1 : 1;
 
             let csvContent = "data:text/csv;charset=utf-8,";
             csvContent += `No,Material,Name,Length (${state.unit}),Width (${state.unit}),Thickness (${state.unit}),Quantity,Total Area (m2)\n`;
 
-            // Filtrlangan ma'lumotni emas, to'liq RAW datani chiqarish yaxshiroq
             rawData.forEach((row, index) => {
                 const l = (row.length * factor).toFixed(1);
                 const w = (row.width * factor).toFixed(1);

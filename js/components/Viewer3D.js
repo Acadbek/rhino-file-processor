@@ -87,10 +87,8 @@ export default class Viewer3D {
     loader.parse(arrayBuffer, (object) => {
       this.model = object;
 
-      // --- PROFESSIONAL DESIGN STILI ---
       this.model.traverse((child) => {
         if (child.isMesh) {
-          // Dizayndagi kabi "Oq, Toza" ko'rinish
           child.material = new THREE.MeshStandardMaterial({
             color: 0xffffff,      // Oppoq rang
             roughness: 0.5,       // Yarim matviy (plastik yoki bo'yalgan yog'och kabi)
@@ -98,7 +96,6 @@ export default class Viewer3D {
             flatShading: false,   // Silliq yuzalar
           });
 
-          // Soyalar tushishi uchun (agar keyinchalik shadow yoqsangiz)
           child.castShadow = true;
           child.receiveShadow = true;
         }

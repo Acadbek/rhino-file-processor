@@ -1,4 +1,3 @@
-// js/pages/ProductLibrary.js
 import Sidebar from '../components/Sidebar.js';
 import ProductCard from '../components/ProductCard.js';
 import { mockProducts } from '../services/mockData.js';
