@@ -1,0 +1,474 @@
+:root {
+  --primary-color: #3b7486;
+  --bg-color: #E5E5E5;
+  --sidebar-width: 250px;
+  --text-dark: #333;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background-color: var(--bg-color);
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Dashboard Layout */
+.dashboard-layout {
+  display: flex;
+  height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+/* Sidebar */
+.sidebar {
+  width: var(--sidebar-width);
+  background: #fff;
+  height: 100%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #ddd;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: #555;
+  padding: 10px 15px;
+  display: block;
+  margin-bottom: 5px;
+  border-radius: 6px;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+  background-color: #f0f4f8;
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+/* Login Page stili */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #ccc;
+  /* Dizayndagi kulrang fon */
+}
+
+/* --- Header --- */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.header-title {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.badge {
+  color: #888;
+  font-size: 0.9rem;
+}
+
+/* --- Inputs & Buttons --- */
+.search-input {
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 250px;
+  outline: none;
+}
+
+.btn-primary {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+/* --- GRID SYSTEM (Eng muhimi) --- */
+.products-grid {
+  display: grid;
+  /* Avtomatik joylashish: eng kami 250px, qolgani cho'ziladi */
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+/* --- Product Card Style --- */
+.product-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card-image {
+  height: 180px;
+  background: #f4f4f4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-image img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 15px;
+  flex: 1;
+}
+
+.card-body h3 {
+  font-size: 16px;
+  margin-bottom: 5px;
+  color: var(--text-dark);
+}
+
+.card-body p {
+  font-size: 13px;
+  color: #777;
+  line-height: 1.4;
+}
+
+.card-footer {
+  padding: 10px 15px;
+  border-top: 1px solid #eee;
+  display: flex;
+  gap: 10px;
+}
+
+.card-footer button {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ddd;
+  background: transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.card-footer .btn-delete {
+  color: red;
+  flex: 0.3;
+}
+
+.card-footer .btn-edit:hover {
+  background: #f9f9f9;
+}
+
+/* --- MODAL SYSTEM --- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  /* Qoraytirilgan fon */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.modal-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-container {
+  background: white;
+  width: 900px;
+  /* Katta modal */
+  max-width: 95%;
+  max-height: 90vh;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+}
+
+.modal-overlay.open .modal-container {
+  transform: translateY(0);
+}
+
+.modal-header {
+  padding: 20px 30px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h2 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.btn-close {
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #999;
+}
+
+.modal-body {
+  padding: 30px;
+  overflow-y: auto;
+}
+
+/* --- FORM LAYOUT (2 Columns) --- */
+.form-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  /* Chap taraf kattaroq */
+  gap: 40px;
+}
+
+/* Inputlar stili */
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+textarea.form-control {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* Kichik Grid Inputlar (Min X, Max Y...) */
+.grid-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+/* Upload Areas */
+.upload-box {
+  border: 2px dashed #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  background: #f9f9f9;
+  cursor: pointer;
+  transition: border-color 0.2s;
+  margin-bottom: 20px;
+}
+
+.upload-box:hover {
+  border-color: var(--primary-color);
+}
+
+.upload-icon {
+  font-size: 32px;
+  color: #aaa;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.upload-label {
+  font-size: 12px;
+  color: #666;
+}
+
+/* Rasmlar qatori */
+.photos-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.photo-slot {
+  height: 80px;
+  border: 2px dashed #ddd;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ccc;
+  cursor: pointer;
+}
+
+/* --- CALCULATOR PAGE --- */
+.upload-area {
+  border: 3px dashed #ccc;
+  border-radius: 20px;
+  padding: 60px 20px;
+  text-align: center;
+  background: #fff;
+  transition: all 0.3s ease;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Fayl sudrab kelinganda rang o'zgarishi */
+.upload-area.drag-active {
+  border-color: var(--primary-color);
+  background: #f0f8ff;
+  transform: scale(1.02);
+}
+
+/* Spinner Animatsiyasi */
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px auto;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Progress Bar */
+.progress-bar {
+  width: 300px;
+  height: 10px;
+  background: #eee;
+  border-radius: 5px;
+  margin: 10px auto;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--primary-color);
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+/* --- TOGGLE SWITCH --- */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked+.slider {
+  background-color: var(--primary-color);
+}
+
+input:checked+.slider:before {
+  transform: translateX(20px);
+}
+
+.toggle-wrapper {
+  display: flex;
+  align-items: center;
+  min-width: 120px;
+  /* Inputlar bilan bir qatorda chiroyli turishi uchun */
+}
+
+/* --- CHIPS (TAGS) --- */
+.chip {
+  background: #e0f2f1;
+  color: var(--primary-color);
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.chip:hover {
+  background: #b2dfdb;
+}
+
+/* Modal formani ixchamlashtirish */
+.texture-form {
+  max-width: 500px;
+  /* Texture modali Product modalidan kichikroq */
+  margin: 0 auto;
+}
