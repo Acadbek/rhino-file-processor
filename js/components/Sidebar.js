@@ -3,7 +3,7 @@ export default function Sidebar() {
 
     return `
         <aside class="sidebar">
-            <h2 style="margin-bottom: 30px; color: #3b7486;">PINFORM</h2>
+            <h2 style="margin-bottom: 30px; color: #3b7486;">rhino-file-processor</h2>
             <nav>
                 <a href="#/products" class="${path === '/products' ? 'active' : ''}">Product Library</a>
                 <a href="#/textures" class="${path === '/textures' ? 'active' : ''}">Texture Library</a>

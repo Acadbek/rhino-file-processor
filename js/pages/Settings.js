@@ -88,7 +88,7 @@ export default {
 
     // --- TEAM LIST MOCK DATA ---
     const teamMembers = [
-      { name: "Admin User", email: "admin@pinform.com", role: "Owner" },
+      { name: "Admin User", email: "admin@rhino-file-processor.com", role: "Owner" },
       { name: "John Designer", email: "john@design.com", role: "Editor" },
       { name: "Factory Manager", email: "manager@factory.com", role: "Viewer" }
     ];

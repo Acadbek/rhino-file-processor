@@ -386,7 +386,7 @@ export default {
             const encodedUri = encodeURI(csvContent);
             const link = document.createElement("a");
             link.setAttribute("href", encodedUri);
-            link.setAttribute("download", "PINFORM_CuttingList.csv");
+            link.setAttribute("download", "rhino-file-processor_CuttingList.csv");
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
