@@ -162,13 +162,48 @@ export default {
         });
 
         // 4. File Upload
-        elements.dropZone.addEventListener('dragover', (e) => { e.preventDefault(); elements.dropZone.classList.add('drag-active'); });
-        elements.dropZone.addEventListener('dragleave', () => elements.dropZone.classList.remove('drag-active'));
+        // Drag Enter (Kirganda)
+        elements.dropZone.addEventListener('dragenter', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            elements.dropZone.classList.add('drag-active');
+        });
+        // Drag Over (Ustida ushlab turilganda)
+        elements.dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            e.dataTransfer.dropEffect = 'copy'; // "Copy" ikonkasini chiqarish
+            elements.dropZone.classList.add('drag-active');
+        });
+
+        // Drag Leave (Chiqib ketganda)
+        elements.dropZone.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            // Faqat haqiqatan chiqib ketsa classni o'chiramiz
+            if (e.relatedTarget && !elements.dropZone.contains(e.relatedTarget)) {
+                elements.dropZone.classList.remove('drag-active');
+            }
+        });
+
+        // DROP (Tashlaganda)
         elements.dropZone.addEventListener('drop', (e) => {
             e.preventDefault();
+            e.stopPropagation();
             elements.dropZone.classList.remove('drag-active');
-            if (e.dataTransfer.files.length) processFile(e.dataTransfer.files[0]);
+
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                processFile(files[0]);
+            }
         });
+        // elements.dropZone.addEventListener('dragover', (e) => { e.preventDefault(); elements.dropZone.classList.add('drag-active'); });
+        // elements.dropZone.addEventListener('dragleave', () => elements.dropZone.classList.remove('drag-active'));
+        // elements.dropZone.addEventListener('drop', (e) => {
+        //     e.preventDefault();
+        //     elements.dropZone.classList.remove('drag-active');
+        //     if (e.dataTransfer.files.length) processFile(e.dataTransfer.files[0]);
+        // });
         document.getElementById('btnSelectFile').addEventListener('click', () => elements.fileInput.click());
         elements.fileInput.addEventListener('change', (e) => {
             if (e.target.files.length) processFile(e.target.files[0]);

@@ -472,3 +472,15 @@ input:checked+.slider:before {
   /* Texture modali Product modalidan kichikroq */
   margin: 0 auto;
 }
+
+.upload-content {
+  pointer-events: none;
+  /* Ichki narsalar hodisani o'tkazib yuboradi */
+}
+
+/* Lekin Button bosilishi kerak */
+.upload-content button {
+  pointer-events: auto;
+  position: relative;
+  z-index: 10;
+}
